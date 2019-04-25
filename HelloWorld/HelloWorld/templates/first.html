@@ -1,0 +1,92 @@
+{% load staticfiles %}
+{% load pagetag %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>期中作业</title>
+<link href="{% static 'css/bootstrap.css'%}" rel="stylesheet">
+<link href="{% static 'css/wyj.css'%}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid"> 
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      <a class="navbar-brand" href="#">王handsome</a></div>
+    <div class="collapse navbar-collapse" id="defaultNavbar1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'myapp:first' 1 %}">First<span class="sr-only">(current)</span></a></li>
+        <li><a href="{% url 'myapp:second' 1 %}">Second</a></li>          
+      </ul>
+      <ul class="nav navbar-nav navbar-right">    
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1 class="text-info" style="text-align:center">豆瓣电影TOP250</h1>
+    </div>
+  </div>
+  <hr>
+</div>
+<div class="container">
+  <div class="row text-center">
+    <table class="table">
+      <thead class="thead-dark">
+          <tr class="bg-primary"> 
+              <th scope="col" style="text-align:center">排名</th>
+              <th scope="col" style="text-align:center">电影名</th>
+              <th scope="col" style="text-align:center">主要人员</th>
+              <th scope="col" style="text-align:center">分类</th>
+          </tr>
+      </thead>
+      {% for i in page %}
+      <tr class="bg-success">
+          <td scope="row">{{i.id}}</td>
+          <td>{{i.name}}</td>
+          <td>{{i.detail1}}</td>
+          <td>{{i.detail2}}</td>
+      </tr>
+      {% endfor %}
+  </table>
+  </div>
+  <div class="row text-center" >
+  <ul class="pagination">
+      {% if page.has_previous %}
+      <li class="page-item">
+          <a href="/wyj/qizhong/{{ page.previous_page_number }}" aria-label="Previous" class="page-link">
+              <span aria-hidden="true">&laquo;</span>
+          </a>
+      </li>
+      {% endif %}
+      {% for index in page.paginator.page_range %}
+          {% circle_page page.number index %}
+      {% endfor %}
+
+      {% if page.has_next %}
+      <li class="page-item">
+          <a href="/wyj/qizhong/{{ page.next_page_number }}" aria-label="Next" class="page-link">
+              <span aria-hidden="true">&raquo;</span>
+          </a>
+      </li>
+      {% endif %}
+  </ul>
+  </div> 
+  </div>  
+  <div class="row"></div>
+  <hr>
+<script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+<div class="text-center col-md-6 col-md-offset-3">
+  <h4 class="text-info" style="text-align:center">王宜家 </h4>
+  <p class="text-info" style="text-align:center">16219112208 16计算机三班</p>
+</div>
+<hr>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+</html>

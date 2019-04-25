@@ -1,0 +1,20 @@
+.navbar{
+    margin-bottom: 0px;
+    border-radius: 5px;
+    background: #b9cdd6;    
+} 
+.navbar .nav > li > a{
+    color: #ffffff;    
+}
+.navbar .nav >li >a:visited{
+    color: rgb(255, 253, 253);
+    background-color: #337ab7;
+}
+.navbar .nav > li > a:hover {
+    color: rgb(255, 255, 255);
+    background-color: #5c73f1;
+}
+.navbar .nav >li >a:active{
+    color: rgb(255, 255, 255);
+    background-color: #5c73f1;
+}
