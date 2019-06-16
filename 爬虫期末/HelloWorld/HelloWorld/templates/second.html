@@ -1,0 +1,117 @@
+{% load staticfiles %}
+{% load pagetag %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Second</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="{% static 'css/bootstrap.css'%}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'css/style.css'%}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js'%}"></script>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{% static 'js/move-top.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/easing.js'%}"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+</head>
+	
+<body>
+	<div class="banner two">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<div class="navbar-header navbar-left">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<h1><a class="navbar-brand" href="{% url 'myapp:index' %}" style="font-family:'黑体'">PY<span>T</span>HO<span>N</span>爬<span>虫</span>期末</a></h1>
+				</div>					  
+				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+					    <ul class="nav navbar-nav">
+          							  <li><a href="{% url 'myapp:index' %}">Home</a></li>  
+                                      <li><a href="{% url 'myapp:first' 1 %}">音乐TOP250</a></li>       														
+								  <li class="active"><a class="active" href="{% url 'myapp:second' 1 %}">COLOURPOP</a></li> 
+                                  															
+         						 </ul>
+       						 </div>					    
+								<script>
+									$('ul.nav li.dropdown').hover(function() {
+										 $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+											}, function() {
+												$(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+											});
+								</script>
+					</nav>					
+				</div>
+				<div class="clearfix"></div>			
+			   <div class="w3l-sub-head">
+                       <h2 class="tittle" style="font-family:'黑体'">COLOURPOP眼影盘</h2>
+               </div>			
+		</div>
+						<script src="{% static 'js/responsiveslides.min.js'%}"></script>
+   <!-- <div class="about" id="about">    
+	</div> -->
+    <div class="contact-main-agile-info" id="contact"> 
+			<div class="row text-center">
+					<table class="table">
+					  <thead class="thead-dark">
+						  <tr class="bg-primary" style="background:#444444">
+							  <th scope="col" style="text-align:center">id</th>
+							  <th scope="col" style="text-align:center">商品名</th>
+							  <th scope="col" style="text-align:center">价格</th>
+						  </tr>
+					  </thead>
+					  {% for i in page %}
+					  <tr style="background:#d4d4d4">
+						  <td scope="row">{{i.id}}</td>
+						  <td>{{i.name}}</td>
+						  <td>{{i.price}}</td>
+					  </tr>
+					  {% endfor %}
+				  </table>
+				  </div>
+				  <div class="row text-center">
+					<ul class="pagination">
+					  {% if page.has_previous %}
+					  <li class="page-item">
+						  <a href="/wyj/qimo2/{{ page.previous_page_number }}" aria-label="Previous" class="page-link">
+							  <span aria-hidden="true">&laquo;</span>
+						  </a>
+					  </li>
+					  {% endif %}
+					  {% for index in page.paginator.page_range %}
+						  {% circle_page page.number index %}
+					  {% endfor %}
+				
+					  {% if page.has_next %}
+					  <li class="page-item">
+						  <a href="/wyj/qimo2/{{ page.next_page_number }}" aria-label="Next" class="page-link">
+							  <span aria-hidden="true">&raquo;</span>
+						  </a>
+					  </li>
+					  {% endif %}
+					</ul>
+					</div>  
+  </div>
+	<div class="w3l-footer">
+<div class="copyright-wthree">
+    <p>16计算机科学与技术三班&nbsp;16219112208&nbsp;王宜家&nbsp;PYTHON爬虫期末作业</p>
+	  </div>
+</div>
+	<script src="{% static 'js/bootstrap.js'%}"></script>
+</body>
+</html>
